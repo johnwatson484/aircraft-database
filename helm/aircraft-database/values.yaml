@@ -6,7 +6,7 @@ container:
   imagePullPolicy: Always
   requestMemory: 120Mi
   requestCpu: 120m
-  limitMemory: 1000Mi
+  limitMemory: 1Gi
   limitCpu: 500m
   redisHost:
   redisPassword:
