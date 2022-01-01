@@ -8,13 +8,12 @@ const main = async () => {
   const stream = wreck.toReadableStream(payload)
   const aircraft = await csv().fromStream(stream)
 
-  console.log(aircraft)
-
   for (const plane of aircraft) {
     if (plane.icao24) {
       await cache.update('data', plane.icao24, plane)
     }
   }
+
   await cache.stop()
 }
 
