@@ -1,8 +1,0 @@
-{{- include "helm-library.deployment" (list . "aircraft-database.deployment") -}}
-{{- define "aircraft-database.deployment" -}}
-spec:
-  template:
-    spec:
-      containers:
-      - {{ include "helm-library.container" (list . "aircraft-database.container") }}
-{{- end -}}

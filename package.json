@@ -19,6 +19,7 @@
   "homepage": "https://github.com/johnwatson484/aircraft-database#readme",
   "dependencies": {
     "@hapi/hoek": "^9.2.1",
+    "@hapi/wreck": "^17.1.0",
     "amqplib": "^0.8.0",
     "joi": "^17.4.2",
     "redis": "^4.0.1"

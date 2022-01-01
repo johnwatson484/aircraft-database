@@ -1,0 +1,13 @@
+{{- include "helm-library.cron-job" (list . "aircraft-database.cron-job") -}}
+{{- define "aircraft-database.cron-job" -}}
+metadata:
+  name: {{.Values.name }}
+spec:
+  successfulJobsHistoryLimit: 1
+  jobTemplate: 
+    spec:
+      template:
+        spec:
+          containers:
+          - {{ include "helm-library.container" (list . "aircraft-database.container") | nindent 12 }}
+{{- end -}}
