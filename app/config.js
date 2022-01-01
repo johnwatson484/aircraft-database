@@ -11,7 +11,7 @@ const schema = Joi.object().keys({
       tls: Joi.boolean().default(false)
     }),
     password: Joi.string().allow(''),
-    partition: Joi.string().default('aircraft-database'),
+    partition: Joi.string().default('aircraft-cache'),
     ttl: Joi.number().default(3600 * 1000 * 24) // 1 day
   })
 })
