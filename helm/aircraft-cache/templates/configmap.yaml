@@ -1,0 +1,6 @@
+{{- include "helm-library.configmap" (list . "aircraft-database.configmap") -}}
+{{- define "aircraft-database.configmap" -}}
+data:
+  NODE_ENV: {{ quote .Values.environment }}
+  REDIS_HOST: {{ quote .Values.container.redisHost }}
+{{- end -}}

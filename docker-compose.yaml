@@ -1,0 +1,6 @@
+version: '3.8'
+services:
+  aircraft-database:
+    build: .
+    image: aircraft-database
+    container_name: aircraft-database

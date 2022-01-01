@@ -1,0 +1,30 @@
+version: '3.8'
+
+# This override file should be used when running this service in isolation
+# to provide dependencies and expose ports for local testing
+
+services:
+  aircraft-database:
+    build:
+      target: development
+    image: aircraft-database-development
+    container_name: aircraft-database-development
+    ports:
+      - "9231:9229"
+    volumes:
+      - ./app:/home/node/app
+      - ./package.json:/home/node/package.json
+    depends_on: 
+      - aircraft-redis
+    environment:
+      REDIS_HOST: aircraft-redis
+
+  aircraft-redis:
+    image: redis:6
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+
+volumes:
+  redis_data:

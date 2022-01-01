@@ -1,0 +1,20 @@
+environment: development
+name: aircraft-database
+image: aircraft-database
+
+container:
+  imagePullPolicy: Always
+  requestMemory: 120Mi
+  requestCpu: 120m
+  limitMemory: 120Mi
+  limitCpu: 120m
+  redisHost:
+  redisPassword:
+
+deployment:
+  restartPolicy: Always
+  replicas: 1
+  minReadySeconds: 0
+
+secret:
+  type: Opaque
