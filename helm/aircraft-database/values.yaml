@@ -6,8 +6,8 @@ container:
   imagePullPolicy: Always
   requestMemory: 120Mi
   requestCpu: 120m
-  limitMemory: 120Mi
-  limitCpu: 120m
+  limitMemory: 500Mi
+  limitCpu: 500m
   redisHost:
   redisPassword:
 
@@ -20,6 +20,6 @@ secret:
   type: Opaque
 
 cronJob:
-  schedule: "0 0 * * *"
+  schedule: "0 * * * *"
   concurrencyPolicy: Forbid
   restartPolicy: Never

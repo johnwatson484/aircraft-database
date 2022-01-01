@@ -10,7 +10,7 @@ services:
     image: aircraft-database-development
     container_name: aircraft-database-development
     ports:
-      - "9231:9229"
+      - "9232:9229"
     volumes:
       - ./app:/home/node/app
       - ./package.json:/home/node/package.json
@@ -24,7 +24,7 @@ services:
     volumes:
       - redis_data:/data
     ports:
-      - "6379:6379"
+      - "6381:6379"
 
 volumes:
   redis_data:
