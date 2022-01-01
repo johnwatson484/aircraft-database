@@ -3,6 +3,7 @@ const wreck = require('@hapi/wreck')
 const csv = require('csvtojson')
 
 const main = async () => {
+  console.log('Sourcing data')
   await cache.start()
   const { payload } = await wreck.get('https://opensky-network.org/datasets/metadata/aircraftDatabase.csv')
   const stream = wreck.toReadableStream(payload)
@@ -15,6 +16,7 @@ const main = async () => {
   }
 
   await cache.stop()
+  console.log('Data refreshed')
 }
 
 for (const signal of ['SIGINT', 'SIGTERM', 'SIGQUIT']) {
