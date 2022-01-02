@@ -1,6 +1,6 @@
 {
   "name": "aircraft-database",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Cache aircraft tracking alerts",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,6 @@
   "homepage": "https://github.com/johnwatson484/aircraft-database#readme",
   "dependencies": {
     "@hapi/hoek": "^9.2.1",
-    "@hapi/wreck": "^17.1.0",
     "csvtojson": "^2.0.10",
     "joi": "^17.4.2",
     "redis": "^4.0.1"
