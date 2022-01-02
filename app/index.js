@@ -1,28 +1,32 @@
 const cache = require('./cache')
-const fs = require('fs')
+const Converter = require('csvtojson').Converter
 const https = require('https')
-const csv = require('csvtojson')
 
 const main = async () => {
+  await cache.start()
   console.log('Sourcing data')
 
-  const file = fs.createWriteStream('/tmp/aircraft-database.csv')
-  https.get('https://opensky-network.org/datasets/metadata/aircraftDatabase.csv', async function (response) {
-    response.pipe(file)
+  const converter = new Converter({ constructResult: false })
 
-    response.on('end', async function () {
-      await cache.start()
-      const aircraft = await csv().fromFile('/tmp/aircraft-database.csv')
+  converter.on('data', async function (data) {
+    const plane = JSON.parse(data)
+    if (plane.icao24) {
+      await cache.update('data', plane.icao24, plane)
+    }
+  })
 
-      for (const plane of aircraft) {
-        if (plane.icao24) {
-          await cache.update('data', plane.icao24, plane)
-        }
-      }
+  converter.on('end_parsed', async function () {
+    await cache.stop()
+    console.log('Data refreshed parsed')
+  })
 
-      await cache.stop()
-      console.log('Data refreshed')
-    })
+  converter.on('end', async function () {
+    await cache.stop()
+    console.log('Data refreshed')
+  })
+
+  https.get('https://opensky-network.org/datasets/metadata/aircraftDatabase.csv', function (response) {
+    response.pipe(converter)
   })
 }
 

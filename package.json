@@ -1,6 +1,6 @@
 {
   "name": "aircraft-database",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Cache aircraft tracking alerts",
   "main": "index.js",
   "scripts": {
