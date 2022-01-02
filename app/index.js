@@ -15,17 +15,19 @@ const main = async () => {
     }
   })
 
-  converter.on('end', async function () {
+  converter.on('end', function () {
     console.log('Data refreshed')
+    process.exit(0)
   })
 
-  https.get('https://opensky-network.org/datasets/metadata/aircraftDatabase.csv', function (response) {
+  https.get('https://opensky-network.org/datasets/metadata/aircraftDatabase.csv', async function (response) {
     response.pipe(converter)
   })
 }
 
 for (const signal of ['SIGINT', 'SIGTERM', 'SIGQUIT']) {
   process.on(signal, async () => {
+    console.log('Shutting down')
     await cache.stop()
     process.exit()
   })
