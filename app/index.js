@@ -15,13 +15,7 @@ const main = async () => {
     }
   })
 
-  converter.on('end_parsed', async function () {
-    await cache.stop()
-    console.log('Data refreshed parsed')
-  })
-
   converter.on('end', async function () {
-    await cache.stop()
     console.log('Data refreshed')
   })
 
