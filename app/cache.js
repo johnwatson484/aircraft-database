@@ -12,7 +12,9 @@ const start = async () => {
 }
 
 const stop = async () => {
-  await client.quit()
+  if (client.isOpen) {
+    await client.quit()
+  }
 }
 
 const get = async (cache, key) => {
