@@ -24,8 +24,7 @@ const get = async (cache, key) => {
 const set = async (cache, key, value) => {
   const fullKey = getFullKey(cache, key)
   const serializedValue = JSON.stringify(value)
-  await client.set(fullKey, serializedValue)
-  await client.expire(fullKey, config.ttl)
+  await client.set(fullKey, serializedValue, { EX: config.ttl })
 }
 
 const update = async (cache, key, cacheData) => {
