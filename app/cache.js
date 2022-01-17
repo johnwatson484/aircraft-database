@@ -12,7 +12,7 @@ const start = async () => {
 }
 
 const stop = async () => {
-  await client.disconnect()
+  await client.quit()
 }
 
 const get = async (cache, key) => {

@@ -25,4 +25,12 @@ const main = async () => {
   })
 }
 
+for (const signal of ['SIGINT', 'SIGTERM', 'SIGQUIT']) {
+  process.on(signal, async () => {
+    console.log('Shutting down')
+    await cache.stop()
+    process.exit()
+  })
+}
+
 main()
