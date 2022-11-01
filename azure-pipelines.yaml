@@ -9,8 +9,13 @@ resources:
     type: github
     endpoint: John D Watson
     name: johnwatson484/azure-devops-templates
+    ref: refs/tags/1
 
 extends:
   template: build.yaml@templates
   parameters:
-    repo: aircraft-database
+    name: aircraft-database
+    deploy: true
+    namespace: aircraft
+    hasSecureHelmValuesFile: true
+
