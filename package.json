@@ -1,6 +1,6 @@
 {
   "name": "aircraft-database",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "description": "Cache aircraft tracking alerts",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,8 @@
     "redis": "4.2.0"
   },
   "devDependencies": {
-    "nodemon": "2.0.19",
-    "standard": "17.0.0"
+    "eslint": "9.7.0",
+    "neostandard": "0.11.1",
+    "nodemon": "3.1.4"
   }
 }
