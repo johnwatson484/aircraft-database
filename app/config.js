@@ -8,12 +8,12 @@ const schema = Joi.object().keys({
     socket: Joi.object({
       host: Joi.string(),
       port: Joi.number().default(6379),
-      tls: Joi.boolean().default(false)
+      tls: Joi.boolean().default(false),
     }),
     password: Joi.string().allow(''),
     partition: Joi.string().default('aircraft-cache'),
-    ttl: Joi.number().default(2592000) // 30 days
-  })
+    ttl: Joi.number().default(2592000), // 30 days
+  }),
 })
 
 // Build config
@@ -23,12 +23,12 @@ const config = {
     socket: {
       host: process.env.REDIS_HOST,
       port: process.env.REDIS_PORT,
-      tls: process.env.REDIS_TLS
+      tls: process.env.REDIS_TLS,
     },
     password: process.env.REDIS_PASSWORD,
     partition: process.env.REDIS_PARTITION,
-    ttl: process.env.REDIS_TTL
-  }
+    ttl: process.env.REDIS_TTL,
+  },
 }
 
 // Validate config

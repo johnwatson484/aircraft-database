@@ -48,5 +48,5 @@ module.exports = {
   start,
   stop,
   set,
-  update
+  update,
 }
