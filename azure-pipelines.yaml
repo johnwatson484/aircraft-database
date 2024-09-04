@@ -17,5 +17,4 @@ extends:
     name: aircraft-database
     deploy: true
     namespace: aircraft
-    hasSecureHelmValuesFile: true
 

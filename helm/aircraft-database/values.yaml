@@ -7,13 +7,12 @@ container:
   requestCpu: 120m
   limitMemory: 1000Mi
   limitCpu: 500m
-  redisHost:
-  redisPassword:
+  redisHost: services.lynxmagnus.com
 
 deployment: {}
 
 secret:
-  type: Opaque
+  secretsPath: /aircraft
 
 cronJob:
   schedule: "0 * * * *"
