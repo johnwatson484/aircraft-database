@@ -1,7 +1,8 @@
 {
   "name": "aircraft-database",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Cache aircraft tracking alerts",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "start:watch": "nodemon --inspect=0.0.0.0 --ext js --legacy-watch app/index.js",

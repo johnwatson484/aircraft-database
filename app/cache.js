@@ -1,10 +1,12 @@
-const { cache: config } = require('./config')
-const { createClient } = require('redis')
-const hoek = require('@hapi/hoek')
+import { createClient } from 'redis'
+import hoek from '@hapi/hoek'
+import config from './config.js'
+
+const { cache: cacheConfig } = config
 let client
 
 const start = async () => {
-  client = createClient({ socket: config.socket, password: config.password })
+  client = createClient({ socket: cacheConfig.socket, password: cacheConfig.password })
   client.on('error', (err) => console.log(`Redis error: ${err}`))
   client.on('reconnecting', () => console.log('Redis reconnecting...'))
   client.on('ready', () => console.log('Redis connected'))
@@ -26,7 +28,7 @@ const get = async (cache, key) => {
 const set = async (cache, key, value) => {
   const fullKey = getFullKey(cache, key)
   const serializedValue = JSON.stringify(value)
-  await client.set(fullKey, serializedValue, { EX: config.ttl })
+  await client.set(fullKey, serializedValue, { EX: cacheConfig.ttl })
 }
 
 const update = async (cache, key, cacheData) => {
@@ -44,7 +46,7 @@ const getKeyPrefix = (cache) => {
   return `${config.partition}:${cache}`
 }
 
-module.exports = {
+export default {
   start,
   stop,
   set,

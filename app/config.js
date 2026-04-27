@@ -1,4 +1,4 @@
-const Joi = require('joi')
+import Joi from 'joi'
 const envs = ['development', 'test', 'production']
 
 // Define config schema
@@ -41,4 +41,4 @@ if (error) {
 
 value.isDev = value.env === 'development'
 
-module.exports = value
+export default value

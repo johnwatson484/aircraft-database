@@ -1,6 +1,7 @@
-const cache = require('./cache')
-const Converter = require('csvtojson').Converter
-const https = require('https')
+import cache from './cache.js'
+import csvtojson from 'csvtojson'
+const { Converter } = csvtojson
+import { Readable } from 'stream'
 
 const main = async () => {
   await cache.start()
@@ -20,9 +21,17 @@ const main = async () => {
     process.exit(0)
   })
 
-  https.get('https://opensky-network.org/datasets/metadata/aircraftDatabase.csv', async function (response) {
-    response.pipe(converter)
+  converter.on('error', (err) => {
+    console.error('Converter error:', err)
+    process.exit(1)
   })
+
+  const response = await fetch('https://opensky-network.org/datasets/metadata/aircraftDatabase.csv')
+  if (!response.ok) {
+    console.error(`Unexpected status: ${response.status}`)
+    process.exit(1)
+  }
+  Readable.fromWeb(response.body).pipe(converter)
 }
 
 for (const signal of ['SIGINT', 'SIGTERM', 'SIGQUIT']) {
